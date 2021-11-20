@@ -1,0 +1,22 @@
+version: '3'
+services:
+  bonus_calculator:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 8003:8003
+      - 8004:8004
+    healthcheck:
+      test: exit 0
+    command: ["sh", "entrypoint.sh"]
+    volumes:
+      - ../../.:/usr/src/app
+    depends_on:
+      - db
+  db:
+    image: postgres:10
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
