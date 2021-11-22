@@ -1,17 +1,16 @@
 version: '3'
 services:
-  bonus_calculator:
+  app:
     build: .
     env_file:
       - .env
     ports:
-      - 8003:8003
-      - 8004:8004
+      - 5001:5001
     healthcheck:
       test: exit 0
     command: ["sh", "entrypoint.sh"]
     volumes:
-      - ../../.:/usr/src/app
+      - ".:/usr/src/"
     depends_on:
       - db
   db:
